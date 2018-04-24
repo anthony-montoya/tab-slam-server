@@ -160,5 +160,5 @@ app.post('/api/deleteFavorite', (req, res) => {
 })
 
 //NODEMON PORT
-const PORT = 3050;
+const PORT = process.env.PORT || 5000
 app.listen(PORT, () => console.log('Reporting for duty on port: ' + PORT));
