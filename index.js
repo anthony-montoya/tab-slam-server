@@ -81,7 +81,7 @@ app.get('/auth/me', (req, res) => {
 
 app.get('/auth/logout', (req, res) => {
     req.logout(); //Passport gives us this to terminate a login session
-    return res.redirect(302, 'http://localhost:3000/home');
+    return res.redirect(302, '/home');
 })
 
 //API CALLS
