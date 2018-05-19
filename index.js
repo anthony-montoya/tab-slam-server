@@ -45,6 +45,7 @@ passport.use(new Auth0Strategy({
             return done(null, profile);
         } else {
             db.create_user([profile.id, profile.displayName, profile.picture]).then(user => {
+                console.log(user)
                 return done(null, profile);
             })
         }
@@ -69,6 +70,7 @@ app.get('/auth/callback', passport.authenticate('auth0', {
 }))
 
 app.get('/auth/me', (req, res) => {
+    console.log(req.user)
     if (!req.user) {
         return res.status(404).send('User not found');
     } else {
