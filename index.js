@@ -63,8 +63,8 @@ passport.deserializeUser(function (user, done) {
 app.get('/auth', passport.authenticate('auth0'));
 
 app.get('/auth/callback', passport.authenticate('auth0', {
-    successRedirect: 'http://localhost:3000/home',
-    failureRedirect: 'http://localhost:3000/home'
+    successRedirect: 'https://tab-slam-webapp.herokuapp.com/home',
+    failureRedirect: 'https://tab-slam-webapp.herokuapp.com/home'
 }))
 
 app.get('/auth/me', (req, res) => {
@@ -77,7 +77,7 @@ app.get('/auth/me', (req, res) => {
 
 app.get('/auth/logout', (req, res) => {
     req.logout(); //Passport gives us this to terminate a login session
-    return res.redirect(302, 'http://localhost:3000/home');
+    return res.redirect(302, 'https://tab-slam-webapp.herokuapp.com/home');
 })
 
 //API CALLS
