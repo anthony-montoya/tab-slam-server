@@ -1,5 +1,5 @@
 INSERT INTO users
-(auth_id, username, profile_pic)
+(auth_id, username, password)
 VALUES
 ($1, $2, $3)
-RETURNING *;
+RETURNING auth_id, username;
