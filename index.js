@@ -12,7 +12,11 @@ const express = require('express')
 const app = express();
 const db = app.get('db');
 app.use(bodyParser.json());
-// app.use(cors());
+app.use(cors());
+app.use(cors({
+    origin: 'https://tab-slam-server.herokuapp.com/home',
+    credentials: true
+  }));
 
 //Middleware
 app.use(session({
