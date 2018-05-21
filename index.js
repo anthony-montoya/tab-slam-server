@@ -14,7 +14,7 @@ const db = app.get('db');
 app.use(bodyParser.json());
 app.use(cors());
 app.use(cors({
-    origin: 'https://tab-slam-server.herokuapp.com/home',
+    origin: 'https://tab-slam-server.herokuapp.com',
     credentials: true
   }));
 
