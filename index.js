@@ -121,7 +121,7 @@ app.get('/api/login/:username/:password', (request, response) => {
 
 app.get('/api/logout', (req, res) => {
     req.logout(); //Passport gives us this to terminate a login session
-    return res.redirect(302, 'http://localhost:3000/home');
+    return res.redirect(302, 'https://tab-slam-webapp.herokuapp.com/home');
 })
 
 //NODEMON PORT
