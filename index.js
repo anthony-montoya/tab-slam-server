@@ -63,7 +63,7 @@ app.get('/api/tabContent', (req, res) => {
     let tabUrl = req.query.tabUrl;
 
     app.get('db').get_matched_tab(tabUrl).then(dbTab => {
-        
+
         if (dbTab.length === 0) {
             ugs.get(tabUrl, (error, tab) => {
                 app.get('db').store_tab(tab.type, tab.url, tab.artist, tab.name,
@@ -107,12 +107,22 @@ app.get('/api/login/:username/:password', (request, response) => {
 
     app.get('db').check_existing_user(username).then(userObj => {
         if (userObj.length) {
-            response.status(200).send(userObj)
+            bcrypt.compare(password, userObj[0].password).then((res) => {
+                if (res) {
+                    response.status(200).send(userObj)
+                } else {
+                    response.status(400).send('Unauthorized, please check credentials and try again ')
+                }
+            })
         } else {
             bcrypt.hash(password, 10, function (err, encryptedPassword) {
                 let authId = Math.random().toString(36).substring(7);
                 app.get('db').create_user([authId, username, encryptedPassword]).then(newUser => {
-                    response.status(200).send(newUser);
+                    let body = {
+                        newUser: newUser,
+                        alert: 'Account has been created'
+                    }
+                    response.status(200).send(body);
                 })
             });
         }
